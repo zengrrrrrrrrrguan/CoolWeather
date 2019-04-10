@@ -1,6 +1,5 @@
-package com.example.admin.myapplication;
+package com.example.admin.helloworld;
 
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -12,6 +11,4 @@ public class HttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
-    public static void sendOKHttpRequest(String weatherUrl, Callback callback) {
-    }
 }

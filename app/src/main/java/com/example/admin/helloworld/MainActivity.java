@@ -1,16 +1,17 @@
-package com.example.admin.myapplication;
+package com.example.admin.helloworld;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+        import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -19,32 +20,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       
-        this.textView=(TextView) findViewById(R.id.abc);
+        this.textView=(TextView)findViewById(R.id.abc);
         String weatherId="CN101020200";
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=36106df4462540a8bb58ad9bb847526e";
-
-        HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
+        String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=2a4ad245ad794c8b9279c9192737bc56";
+        HttpUtil.sendOkHttpRequest(weatherUrl,new Callback(){
             @Override
-            public void onResponse(okhttp3.Call call, Response response) throws IOException{
+            public void onFailure(Call call, IOException e) {
 
+            }
+            @Override
+            public void onResponse(Call call,Response response) throws IOException{
                 final String responseText = response.body().string();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         textView.setText(responseText);
                     }
                 });
-                textView.setText(responseText);
-            }
-
-            @Override
-            public void onFailure(okhttp3.Call call, IOException e) {
-
             }
         });
     }
 }
-
-
